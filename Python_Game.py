@@ -24,6 +24,8 @@ snake_block = 10
 dx = 0
 dy = 0
 
+direction = (0, -20)
+
 
 while True:
     #Event Handling
@@ -40,21 +42,24 @@ while True:
 
         #The Controls for the game
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                dx, dy = 0, -20
-            elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                dx, dy = 0, 20
-            elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                dx, dy = -20, 0
-            elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                dx, dy = 20, 0
+            if event.key in (pygame.K_UP, pygame.K_w) and direction != (0, 20):
+                direction = (0, -20)
+            elif event.key in (pygame.K_DOWN, pygame.K_s) and direction != (0, -20):
+                direction = (0, 20)
+            elif event.key in (pygame.K_LEFT, pygame.K_a) and direction != (20, 0):
+                direction = (-20, 0)
+            elif event.key in (pygame.K_RIGHT, pygame.K_d) and direction != (-20, 0):
+                direction = (20, 0)
 
 
     #Building and animating assets
-    head_x, head_y = snake[0]
-    new_head = [head_x + dx, head_y + dy]
-    snake.insert(0, new_head)
-    snake.pop()
+    if direction != (0, 0):
+        head_x, head_y = snake[0]
+        dx, dy = direction
+        new_head = [head_x + dx, head_y + dy]
+        snake.insert(0, new_head)
+        snake.pop()
+
     screen.fill(BLACK)
     
     for segment in snake:

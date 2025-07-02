@@ -8,9 +8,9 @@ pygame.display.set_caption("Snake.io")
 
 
 snake = [
-    [100, 50],
-    [80, 50],
-    [60, 50],
+    [550, 550],
+    [550, 530],
+    [550, 510],
 ]
 
 BLACK = (0, 0, 0)
@@ -20,6 +20,10 @@ GREEN = (0, 255, 0)
 clock = pygame.time.Clock()
 snake_block = 10
 
+#Initializing the directions
+dx = 0
+dy = 0
+
 
 while True:
     #Event Handling
@@ -27,21 +31,30 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
 
 
         #The Controls for the game
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP or event.key == pygame.K_w:
-                print("Up")
+                dx, dy = 0, -20
             elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                print("Down")
+                dx, dy = 0, 20
             elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                print("Left")
+                dx, dy = -20, 0
             elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                print("Right")
+                dx, dy = 20, 0
 
 
     #Building and animating assets
+    head_x, head_y = snake[0]
+    new_head = [head_x + dx, head_y + dy]
+    snake.insert(0, new_head)
+    snake.pop()
     screen.fill(BLACK)
     
     for segment in snake:

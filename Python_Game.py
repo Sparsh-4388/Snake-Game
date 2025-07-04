@@ -1,5 +1,6 @@
 import pygame
 import sys
+from screens import game_over
 
 pygame.init()
 
@@ -57,6 +58,19 @@ while True:
         head_x, head_y = snake[0]
         dx, dy = direction
         new_head = [head_x + dx, head_y + dy]
+
+        if new_head[0] < 0 or new_head[0] >= 600 or new_head[1] < 0 or new_head[1] >= 600:
+            result = game_over(screen)
+            if result == 'retry':
+                # Reset snake and direction
+                pygame.time.delay(300)
+                snake = [[550, 550], [550, 530], [550, 510]]
+                direction = (0, -20)
+                continue
+            else:
+                pygame.quit()
+                sys.exit()
+
         snake.insert(0, new_head)
         snake.pop()
 

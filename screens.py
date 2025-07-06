@@ -7,6 +7,9 @@ def game_over(screen):
 
     try_again_rect = pygame.Rect(220, 300, 160, 50)
 
+    pygame.event.clear()
+    pygame.time.delay(200)
+
     while True:
         screen.fill((30, 30, 30))
 
@@ -22,6 +25,14 @@ def game_over(screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return 'quit'
+
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+                
+                elif event.key == pygame.K_SPACE:
+                        return 'retry'
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if try_again_rect.collidepoint(event.pos):

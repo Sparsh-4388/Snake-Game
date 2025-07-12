@@ -16,7 +16,7 @@ Rounds = [
     {
         "name": "Round 1",
         "food_img": "apple.png",
-        "points": 100,
+        "points": 10,
         "goal": 300,
         "time": 300
     },
@@ -24,7 +24,7 @@ Rounds = [
     {
         "name": "Round 2",
         "food_img": "banana.png",
-        "points": 20,
+        "points": 35,
         "goal": 750,
         "time": 180
     },
@@ -32,7 +32,7 @@ Rounds = [
     {
         "name": "Round 3",
         "food_img": "pizza.png",
-        "points": 30,
+        "points": 50,
         "goal": 1500,
         "time": 135
     }

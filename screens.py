@@ -2,7 +2,6 @@ import pygame
 import sys
 
 def game_over(screen, win = False):
-    msg = "You Win!" if win else "Game Over"
     font = pygame.font.SysFont(None, 60)
     small_font = pygame.font.SysFont(None, 40)
 
@@ -14,7 +13,10 @@ def game_over(screen, win = False):
     while True:
         screen.fill((30, 30, 30))
 
-        game_over_text = font.render("Game Over", True, (255, 0, 0))
+        message = "You Win!" if win else "Game Over"
+        text_color = (0, 255, 0) if win else (255, 0, 0)
+
+        game_over_text = font.render(message, True, text_color)
         screen.blit(game_over_text, (200, 150))
 
         pygame.draw.rect(screen, (0, 200, 0), try_again_rect)

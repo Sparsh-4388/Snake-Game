@@ -1,7 +1,8 @@
 import pygame
 import sys
 
-def game_over(screen):
+def game_over(screen, win = False):
+    msg = "You Win!" if win else "Game Over"
     font = pygame.font.SysFont(None, 60)
     small_font = pygame.font.SysFont(None, 40)
 
